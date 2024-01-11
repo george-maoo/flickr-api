@@ -1,0 +1,22 @@
+<h1>Flickr API test</h1>
+<%= form_with url: "/static_pages", method: :get do |f| %>
+  <div>
+    Search for user by id:
+    <%= f.text_field :user_id %>
+
+    <%= f.submit "Search for user", name: nil %>
+  </div>
+<% end %>
+
+<% if params[:user_id] %>
+  <h1>User <%= params[:user_id] %> photos</h1>
+  <div>
+    <% @photos.each do |photo| %>
+      <div>
+        <img src="<%= photo["url_o"] %>" alt="<%= photo["title"] %>" height="300" width="300">
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h1>Search for a user to have their photos appear</h1>
+<% end %>
